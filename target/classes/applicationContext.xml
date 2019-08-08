@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--配置User类的相关信息-->
+    <bean id="user"  class="com.baizhi.entity.User" >
+        <!--为ID属性赋值-->
+        <property name="id" value="8"></property>
+        <!--为username属性赋值-->
+        <property name="username" value="小和"></property>
+        <!--为数组属性赋值-->
+        <property name="as">
+            <!--添加array标签-->
+            <array>
+                <value>小黑</value>
+                <value>小白</value>
+                <value>小绿</value>
+                <value>小红</value>
+            </array>
+        </property>
+        <!--为List集合属性赋值-->
+        <property name="tels">
+            <list>
+                <value>小黑</value>
+                <value>小白</value>
+                <value>小绿</value>
+                <value>小红</value>
+                <value>小红</value>
+            </list>
+        </property>
+        <!--为Set属性赋值-->
+        <property name="ss">
+            <set>
+                <value>小黑</value>
+                <value>小白</value>
+                <value>小绿</value>
+                <value>小红</value>
+                <value>小红</value>
+            </set>
+        </property>
+        <!--为Map集合赋值-->
+        <property name="maps">
+            <map>
+                <!--一个键值对-->
+                <entry>
+                    <key><value>username</value></key>
+                    <value>小黑</value>
+                </entry>
+                <!--一个键值对-->
+                <entry>
+                    <key><value>password</value></key>
+                    <value>123456</value>
+                </entry>
+            </map>
+        </property>
+        <!--为Properties属性赋值-->
+        <property name="properties">
+            <props>
+                <prop key="username">小黑</prop>
+                <prop key="password">123456</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!--配置UserDAOImpl类的相关信息-->
+    <bean id="userDAO" class="com.baizhi.dao.UserDAOImpl"></bean>
+
+    <!--配置UserServiceImpl类的相关信息-->
+    <bean id="userService" class="com.baizhi.service.UserServiceImpl"  autowire="byType">
+        <!-- <property name="userDAO"  ref="userDAO" ></property>-->
+    </bean>
+
+    <!--配置Product类的相关信息-->
+    <bean id="product" class="com.baizhi.entity.Product" >
+        <!--给第一个参数赋值-->
+        <!-- <constructor-arg index="0">
+             <value>1</value>
+         </constructor-arg>
+         <constructor-arg index="1">
+             <value>苹果</value>
+         </constructor-arg>
+         <constructor-arg index="2">
+             <value>10.8</value>
+         </constructor-arg>-->
+
+        <!-- <constructor-arg  name="id" >
+             <value>1</value>
+         </constructor-arg>
+         <constructor-arg  name="productname" >
+             <value>香蕉</value>
+         </constructor-arg>
+         <constructor-arg name="price">
+             <value>19.8</value>
+         </constructor-arg>-->
+        <constructor-arg type="java.lang.Integer">
+            <value>1</value>
+        </constructor-arg>
+        <constructor-arg type="java.lang.String">
+            <value>桃</value>
+        </constructor-arg>
+        <constructor-arg type="java.lang.Double">
+            <value>18.88</value>
+        </constructor-arg>
+    </bean>
+
+    <!--配置ConnectionFactory类的相关信息-->
+    <bean id="connection" class="com.baizhi.factorybean.ConnectionFactory"></bean>
+
+    <bean id="sqlSessionFactory" class="com.baizhi.factorybean.SqlSessionFactoryBean"></bean>
+
+    <!--配置Student类的相关信息-->
+    <bean id="student" class="com.baizhi.entity.Student" scope="prototype"></bean>
+
+    <bean id="animal" class="com.baizhi.entity.Animal"></bean>
+    <bean id="pepople" class="com.baizhi.entity.Pepople" init-method="init" destroy-method="destory"></bean>
+
+</beans>
